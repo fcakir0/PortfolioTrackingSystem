@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DatabaseUtil {
 
-    private static final String URL = "jdbc:postgresql://localhost:5433/portfoydb";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "12345";
+    private static final String URL = "YOUR_DB_URL";
+    private static final String USER = "YOUR_USER";
+    private static final String PASSWORD = "YOUR_PASSWORD";
 
     static {
         try {
