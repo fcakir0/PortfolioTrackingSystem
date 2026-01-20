@@ -1,0 +1,67 @@
+@startuml PortfolioTrackingSystem_Simplified
+
+!define MODEL_COLOR #E1F5FF
+!define DAO_COLOR #FFF4E1
+!define SERVICE_COLOR #E8F5E9
+!define UI_COLOR #F3E5F5
+
+package "model" MODEL_COLOR {
+    class User {
+        -String username
+        -String email
+    }
+    class Asset {
+        -String symbol
+        -MarketType market
+    }
+    class Trade {
+        -TradeType tradeType
+        -double quantity
+        -double price
+    }
+}
+
+package "dao" DAO_COLOR {
+    class TradeDao {
+        +insert(Trade)
+        +getAggregatedPositions(userId)
+    }
+    class PortfolioDao {
+        +getPortfolioSummary(userId)
+    }
+    class PriceHistoryDao {
+        +findLatestPrice(assetId)
+    }
+}
+
+package "service" SERVICE_COLOR {
+    class AuthService {
+        +login(user, pass) : User
+    }
+    class YahooFinancePriceService {
+        +fetchCurrentPrice(asset) : double
+    }
+}
+
+package "ui" UI_COLOR {
+    class LoginFrame {
+        +authenticate()
+    }
+    class MainFrame {
+        -User currentUser
+        +refreshPortfolio()
+        +updateCharts()
+    }
+}
+
+' Kritik Mimari İlişkiler
+LoginFrame ..> AuthService : uses
+MainFrame --> "1" User : owns
+MainFrame ..> TradeDao : fetches data
+MainFrame ..> PortfolioDao : fetches data
+YahooFinancePriceService ..> Asset : tracks
+
+Trade --> Asset : relates to
+Trade --> User : belongs to
+
+@enduml
