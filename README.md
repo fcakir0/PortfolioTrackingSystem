@@ -62,4 +62,4 @@ Proje, katmanlı mimari prensiplerine uygun şekilde geliştirilmiştir.
 ---
 
 ## Notlar
-Bu proje, üniversite dersi kapsamında eğitim amaçlı olarak geliştirilmiştir.
+Bu proje, Java Programlama dersi kapsamında eğitim amaçlı olarak geliştirilmiştir.
